@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -17,7 +18,7 @@ const Home = () => {
         </div>
         <div className="flex flex-col justify-center items-center mx-auto">
           <p className="text-slate-500">Humadity</p>
-          <p className="text-slate-100">32 c</p>
+          <p className="text-slate-100">32%</p>
         </div>
       </div>
       <div className="flex justify-between items-center">
@@ -25,7 +26,7 @@ const Home = () => {
           <h5 className="text-slate-300 text-md">Monday</h5>
         </div>
         <div className="flex mx-auto">
-          <a href="#" className="text-blue-400 text-md hover:text-slate-500">view charts</a>
+          <Link to={"/charts"} className="text-blue-400 text-md hover:text-slate-500">view charts</Link>
         </div>
       </div>
     </main>

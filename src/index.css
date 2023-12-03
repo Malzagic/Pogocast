@@ -13,5 +13,8 @@ body {
     #00449d,
     #0047b1
   );
-  height: 100vh;
+  background-position: 200% 200%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
 }
