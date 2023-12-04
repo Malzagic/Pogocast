@@ -16,7 +16,7 @@ const ForecastReport = () => {
           <p className="text-slate-300">Forecast report</p>
         </div>
       </div>
-      <div className="flex flex-col md:items-center justify-center">
+      <div className="flex flex-col justify-center">
         <Card src={src} hour={hour} temp={temp} />
       </div>
       <div className="flex justify-between items-center">
@@ -27,7 +27,7 @@ const ForecastReport = () => {
           <h5 className="text-slate-300">5-days</h5>
         </div>
       </div>
-      <div className="flex flex-col md:items-center justify-center">
+      <div className="flex flex-col justify-center">
         <Card src={src} hour={hour} temp={temp} />
         <Card src={src} hour={hour} temp={temp} />
         <Card src={src} hour={hour} temp={temp} />
