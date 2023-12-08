@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 
-const Header = ({ cityName }) => {
+const Header = ({ cityName, date }) => {
   return (
     <header className="container mx-auto my-8">
       <div className="flex flex-col">
@@ -15,7 +15,7 @@ const Header = ({ cityName }) => {
           </span>
         </div>
         <div className="flex justify-center items-center pt-2">
-          <h3 className="text-slate-300 text-lg">May 18, 2023</h3>
+          <h3 className="text-slate-300 text-lg">{date}</h3>
         </div>
         <div className="flex justify-center items-center pt-4">
           <Link

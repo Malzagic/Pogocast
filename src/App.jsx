@@ -17,10 +17,13 @@ import About from "./components/pages/About";
 
 // Features for lazy loading for the end of projects
 // const Home = React.lazy(() => import("./pages/Home"));
+
 const App = () => {
   // State managment
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState();
+  const [date, setDate] = useState();
+  const [day, setDay] = useState();
 
   // Functions
   const getData = async (lat, lon) => {
@@ -39,21 +42,54 @@ const App = () => {
     getData(coords.lat, coords.lon);
   };
 
+  const dateHandler = () => {
+    const date = new Date();
+    const todaysDate = date.toDateString().split(" ");
+
+    const dayString =
+      todaysDate[1] + " " + date.getDate() + ", " + todaysDate[3];
+    setDate(dayString);
+    setDay(todaysDate[0]);
+  };
+
   // Change statment managment
   useEffect(() => {
-    getCoords();
+    const confirmed = window.confirm(
+      "You have to turn on the location for pogocast to use this application. Do you agree?"
+    );
+    if (confirmed) {
+      getCoords();
+    }
+
     setLoading(true);
+    dateHandler();
     // eslint-disable-next-line
   }, []);
 
   return loading ? (
-    <div className="center"><CircleLoader color="#f1f5f9" size={200} /></div>
+    <div className="center">
+      <CircleLoader color="#f1f5f9" size={200} />
+    </div>
   ) : (
     <div className="container mx-auto">
       <BrowserRouter>
-        <Header cityName={data.name} />
+        <Header cityName={data.name} date={date} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                icon={data.weather[0].icon}
+                icon_description={data.weather[0].description}
+                temp={data.main.temp}
+                wind={data.wind.deg}
+                humadity={data.main.humidity}
+                sunrise={data.sys.sunrise}
+                sunset={data.sys.sunset}
+                day={day}
+              />
+            }
+          />
           <Route path="/forecast" element={<ForecastReport />} />
           <Route path="/details" element={<Details />} />
           <Route path="/search" element={<SearchBar />} />
