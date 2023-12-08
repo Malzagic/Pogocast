@@ -26,7 +26,12 @@ const Home = () => {
           <h5 className="text-slate-300 text-md">Monday</h5>
         </div>
         <div className="flex mx-auto">
-          <Link to={"/charts"} className="text-blue-400 text-md hover:text-slate-500">view charts</Link>
+          <Link
+            to={"/charts"}
+            className="text-blue-400 text-md hover:text-slate-500"
+          >
+            view charts
+          </Link>
         </div>
       </div>
     </main>
