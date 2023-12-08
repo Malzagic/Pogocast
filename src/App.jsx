@@ -61,7 +61,7 @@ const App = () => {
       getCoords();
     }
 
-    setLoading(true);
+    // setLoading(true);
     dateHandler();
     // eslint-disable-next-line
   }, []);
