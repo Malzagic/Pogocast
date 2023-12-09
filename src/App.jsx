@@ -61,12 +61,16 @@ const App = () => {
       getCoords();
     }
 
-    // setLoading(true);
+    
     dateHandler();
+
+    setTimeout(() => {
+      setLoading(true);
+    }, 6000)
     // eslint-disable-next-line
   }, []);
 
-  return loading ? (
+  return loading && !data ? (
     <div className="center">
       <CircleLoader color="#f1f5f9" size={200} />
     </div>

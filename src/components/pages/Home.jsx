@@ -43,7 +43,7 @@ const Home = ({ icon, icon_description, temp, wind, humadity, sunrise, sunset, d
   return (
     <main className="container mx-auto my-2">
       <div className="flex justify-center items-center">
-        <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt={icon_description} width={200} height={200}/>
+        <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt={icon_description} width={150} height={150}/>
       </div>
       <div className="flex jusitfy-center items-center my-2">
         <div className="flex flex-col justify-center items-center mx-auto">
