@@ -6,15 +6,16 @@ class FetchingData {
 
   async get() {
     const completURL = `${this.urls}&appid=${this.apiKey}`;
-    let res;
     try {
-      res = await fetch(completURL);
+      const res = await fetch(completURL);
 
       if (!res.ok) {
         throw new Error("Something went wrong!");
       }
 
-      return res.json();
+      const data = await res.json()
+
+      return data;
     } catch (err) {
       console.error("Error fetching data:", err);
       throw err;

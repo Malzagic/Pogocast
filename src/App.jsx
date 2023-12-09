@@ -36,6 +36,7 @@ const App = () => {
           `?lat=${coords.lat}&lon=${coords.lon}`;
         const fetchingData = new FetchingData(urls);
         const res = await fetchingData.get();
+        console.log(res)
 
         setData(res);
       }
