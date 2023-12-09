@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CircleLoader from "react-spinners/ClipLoader";
 
-import fetchData from "./components/hook/fetchData";
+import { FetchingData } from "./components/hook/fetchData";
 import geolocation from "./components/hook/geolocation";
 
 import Header from "./components/UI/Header";
@@ -26,28 +26,21 @@ const App = () => {
   const [day, setDay] = useState();
 
   // Functions
-  const getData = async (lat, lon) => {
-    try {
-      const data = await fetchData(
-        process.env.REACT_APP_WEATHER_URL + `?lat=${lat}&lon=${lon}`
-      );
-
-      console.log(data);
-      setData(data);
-    } catch (err) {
-      console.error("Error fetching data:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getCoords = async () => {
+  const dataHandler = async () => {
     try {
       const coords = await geolocation();
+      if (coords) {
+        const urls =
+          process.env.REACT_APP_WEATHER_URL +
+          `?lat=${coords.lat}&lon=${coords.lon}`;
+        const fetchingData = new FetchingData(urls);
+        const res = await fetchingData.get();
 
-      getData(coords.lat, coords.lon);
+        setData(res);
+      }
     } catch (err) {
       console.error("Error getting coordinates:", err);
+    } finally {
       setLoading(false);
     }
   };
@@ -68,7 +61,7 @@ const App = () => {
       "You have to turn on the location for pogocast to use this application. Do you agree?"
     );
     if (confirmed) {
-      getCoords();
+      dataHandler();
     }
 
     dateHandler();
@@ -86,17 +79,19 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={ data &&
-              <Home
-                icon={data.weather[0].icon}
-                icon_description={data.weather[0].description}
-                temp={data.main.temp}
-                wind={data.wind.deg}
-                humadity={data.main.humidity}
-                sunrise={data.sys.sunrise}
-                sunset={data.sys.sunset}
-                day={day}
-              />
+            element={
+              data && (
+                <Home
+                  icon={data.weather[0].icon}
+                  icon_description={data.weather[0].description}
+                  temp={data.main.temp}
+                  wind={data.wind.deg}
+                  humadity={data.main.humidity}
+                  sunrise={data.sys.sunrise}
+                  sunset={data.sys.sunset}
+                  day={day}
+                />
+              )
             }
           />
           <Route path="/forecast" element={<ForecastReport />} />
