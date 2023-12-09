@@ -27,19 +27,29 @@ const App = () => {
 
   // Functions
   const getData = async (lat, lon) => {
-    const data = await fetchData(
-      process.env.REACT_APP_WEATHER_URL + `?lat=${lat}&lon=${lon}`
-    );
+    try {
+      const data = await fetchData(
+        process.env.REACT_APP_WEATHER_URL + `?lat=${lat}&lon=${lon}`
+      );
 
-    console.log(data);
-    setData(data);
-    setLoading(false);
+      console.log(data);
+      setData(data);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getCoords = async () => {
-    const coords = await geolocation();
+    try {
+      const coords = await geolocation();
 
-    getData(coords.lat, coords.lon);
+      getData(coords.lat, coords.lon);
+    } catch (err) {
+      console.error("Error getting coordinates:", err);
+      setLoading(false);
+    }
   };
 
   const dateHandler = () => {
@@ -67,7 +77,7 @@ const App = () => {
 
   console.log(loading);
 
-  return loading && !data ? (
+  return loading ? (
     <div className="center">
       <CircleLoader color="#f1f5f9" size={200} />
     </div>
