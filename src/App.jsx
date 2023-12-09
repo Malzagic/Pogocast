@@ -61,14 +61,11 @@ const App = () => {
       getCoords();
     }
 
-    
     dateHandler();
-
-    setTimeout(() => {
-      setLoading(true);
-    }, 6000)
     // eslint-disable-next-line
   }, []);
+
+  console.log(loading);
 
   return loading && !data ? (
     <div className="center">
