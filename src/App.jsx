@@ -75,16 +75,14 @@ const App = () => {
     // eslint-disable-next-line
   }, []);
 
-  console.log(loading);
-
-  return loading && !data ? (
+  return loading ? (
     <div className="center">
       <CircleLoader color="#f1f5f9" size={200} />
     </div>
   ) : (
     <div className="container mx-auto">
       <BrowserRouter>
-        {data.name && <Header cityName={data.name} date={date} />}
+        {data && <Header cityName={data.name} date={date} />}
         <Routes>
           <Route
             path="/"
