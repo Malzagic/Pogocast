@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CircleLoader from "react-spinners/ClipLoader";
 
 import { FetchingData } from "./components/hook/fetchData";
-import geolocation from "./components/hook/geolocation";
+import { Geolocation } from "./components/hook/geolocation";
 
 import Header from "./components/UI/Header";
 import Home from "./components/pages/Home";
@@ -28,7 +28,8 @@ const App = () => {
   // Functions
   const dataHandler = async () => {
     try {
-      const coords = await geolocation();
+      const geolocaton = new Geolocation("Okey");
+      const coords = await geolocaton.start();
       if (coords) {
         const urls =
           process.env.REACT_APP_WEATHER_URL +
