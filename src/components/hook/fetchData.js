@@ -1,3 +1,5 @@
+import axios from "axios";
+
 class FetchingData {
   constructor(urls) {
     this.apiKey = process.env.REACT_APP_WEATHER_API_KEY;
@@ -7,13 +9,8 @@ class FetchingData {
   async get() {
     const completURL = `${this.urls}&appid=${this.apiKey}`;
     try {
-      const res = await fetch(completURL);
-
-      // if (!res.ok) {
-      //   throw new Error("Something went wrong!");
-      // }
-
-      const data = await res.json()
+      const res = await axios.get(completURL);
+      const data = res.data;
 
       return data;
     } catch (err) {
