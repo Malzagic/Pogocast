@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FaLocationDot } from "react-icons/fa6";
 
 const Header = ({ cityName, date }) => {
-  return cityName && date && (
+  return (
     <header className="container mx-auto my-8">
       <div className="flex flex-col">
         <div className="flex justify-center items-center">

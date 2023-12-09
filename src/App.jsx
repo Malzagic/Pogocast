@@ -84,7 +84,7 @@ const App = () => {
   ) : (
     <div className="container mx-auto">
       <BrowserRouter>
-        <Header cityName={data.name} date={date} />
+        {data.name && <Header cityName={data.name} date={date} />}
         <Routes>
           <Route
             path="/"
