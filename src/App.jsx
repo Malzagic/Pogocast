@@ -77,7 +77,7 @@ const App = () => {
 
   console.log(loading);
 
-  return loading ? (
+  return loading && !data ? (
     <div className="center">
       <CircleLoader color="#f1f5f9" size={200} />
     </div>
