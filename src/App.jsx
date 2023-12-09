@@ -86,7 +86,7 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={
+            element={ data &&
               <Home
                 icon={data.weather[0].icon}
                 icon_description={data.weather[0].description}
