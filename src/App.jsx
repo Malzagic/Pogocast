@@ -28,7 +28,7 @@ const App = () => {
   // Functions
   const dataHandler = async () => {
     try {
-      const geolocaton = new Geolocation("Okey");
+      const geolocaton = new Geolocation();
       const coords = await geolocaton.start();
       if (coords) {
         const urls =
@@ -36,7 +36,6 @@ const App = () => {
           `?lat=${coords.lat}&lon=${coords.lon}`;
         const fetchingData = new FetchingData(urls);
         const res = await fetchingData.get();
-        console.log(res)
 
         setData(res);
       }
@@ -70,7 +69,7 @@ const App = () => {
     // eslint-disable-next-line
   }, []);
 
-  return loading ? (
+  return loading && !data ? (
     <div className="center">
       <CircleLoader color="#f1f5f9" size={200} />
     </div>

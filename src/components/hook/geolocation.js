@@ -1,6 +1,6 @@
 class Geolocation {
-  constructor(err) {
-    this.errorMessage = err;
+  constructor() {
+    this.errorMessage = "";
     this.coords = {
       lat: undefined,
       lon: undefined,
