@@ -33,7 +33,7 @@ const App = () => {
       if (coords) {
         const urls =
           process.env.REACT_APP_WEATHER_URL +
-          `?lat=${coords.lat}&lon=${coords.lon}`;
+          `weather?lat=${coords.lat}&lon=${coords.lon}`;
         const fetchingData = new FetchingData(urls);
         const res = await fetchingData.get();
 
@@ -86,7 +86,8 @@ const App = () => {
                   icon={data.weather[0].icon}
                   icon_description={data.weather[0].description}
                   temp={data.main.temp}
-                  wind={data.wind.deg}
+                  windDir={data.wind.deg}
+                  windSpeed={data.wind.speed}
                   humadity={data.main.humidity}
                   sunrise={data.sys.sunrise}
                   sunset={data.sys.sunset}

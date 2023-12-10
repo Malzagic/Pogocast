@@ -1,7 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { GiMultiDirections } from "react-icons/gi";
+import { TbTemperatureCelsius } from "react-icons/tb";
+import { RiWaterPercentLine } from "react-icons/ri";
 
-const Home = ({ icon, icon_description, temp, wind, humadity, sunrise, sunset, day }) => {
+const Home = ({
+  icon,
+  icon_description,
+  temp,
+  windDir,
+  windSpeed,
+  humadity,
+  sunrise,
+  sunset,
+  day,
+}) => {
   const temperature = Math.round(temp - 273.15).toFixed(0);
 
   const windDirection = (wind) => {
@@ -39,27 +52,42 @@ const Home = ({ icon, icon_description, temp, wind, humadity, sunrise, sunset, d
     return time;
   };
 
-
   return (
     <main className="container mx-auto my-2">
       <div className="flex justify-center items-center">
-        <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt={icon_description} width={150} height={150}/>
+        <img
+          src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+          alt={icon_description}
+          width={150}
+          height={150}
+        />
       </div>
       <div className="flex jusitfy-center items-center my-2">
         <div className="flex flex-col justify-center items-center mx-auto">
           <p className="text-slate-500">Temp</p>
-          <p className="text-slate-100">{temperature}</p>
+          <div className="flex flex-row items-center">
+            <p className="text-slate-100">{temperature}</p>
+            <TbTemperatureCelsius className="text-xl text-slate-100 ml-1" />
+          </div>
         </div>
         <div className="flex flex-col justify-center items-center mx-auto">
           <p className="text-slate-500">Wind</p>
-          <p className="text-slate-100">{windDirection(wind)}</p>
+          <div className="flex flex-row items-center">
+            <p className="text-slate-100">{`${windSpeed} m/s ${windDirection(
+              windDir
+            )}`}</p>
+            <GiMultiDirections className="text-md text-slate-100 ml-1" />
+          </div>
         </div>
         <div className="flex flex-col justify-center items-center mx-auto">
           <p className="text-slate-500">Humadity</p>
-          <p className="text-slate-100">{humadity}</p>
+          <div className="flex flex-row items-center">
+            <p className="text-slate-100">{humadity}</p>
+            <RiWaterPercentLine className="text-xl text-slate-100 ml-1" />
+          </div>
         </div>
       </div>
-      <div className="container w-3/4 mx-auto">
+      <div className="container w-3/4 mx-auto my-5">
         <div className="flex justify-between items-center">
           <div className="flex justify-start">
             <p className="text-slate-300 text-md">
@@ -67,7 +95,9 @@ const Home = ({ icon, icon_description, temp, wind, humadity, sunrise, sunset, d
             </p>
           </div>
           <div className="flex justify-end">
-            <p className="text-slate-300 text-md">Sunset: {sunsetTimeHandler(sunset)}</p>
+            <p className="text-slate-300 text-md">
+              Sunset: {sunsetTimeHandler(sunset)}
+            </p>
           </div>
         </div>
         <div className="flex justify-between items-center">
