@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { WindDirection } from "../hook/windDirections.js"
+import { WindDirection } from "../hook/windDirections.js";
 import { GiMultiDirections } from "react-icons/gi";
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { RiWaterPercentLine } from "react-icons/ri";
+import { BsFillSunriseFill, BsFillSunsetFill } from "react-icons/bs";
 
 const Home = ({
   icon,
@@ -19,7 +20,6 @@ const Home = ({
   const temperature = Math.round(temp - 273.15).toFixed(0);
   const windHandler = new WindDirection(windDir);
   const windDirection = windHandler.currDir();
-  
 
   const sunriseTimeHandler = (sunrise) => {
     const date = new Date(sunrise * 1000);
@@ -75,17 +75,23 @@ const Home = ({
       <div className="container w-3/4 mx-auto my-5">
         <div className="flex justify-between items-center">
           <div className="flex justify-start">
-            <p className="text-slate-300 text-md">
-              Sunrise: {sunriseTimeHandler(sunrise)}
-            </p>
+            <div className="flex flex-row items-center justify-center">
+              <BsFillSunriseFill className="text-3xl text-slate-100 mr-2"/>
+              <p className="text-slate-300 text-xl">
+                {sunsetTimeHandler(sunrise)}
+              </p>
+            </div>
           </div>
           <div className="flex justify-end">
-            <p className="text-slate-300 text-md">
-              Sunset: {sunsetTimeHandler(sunset)}
-            </p>
+            <div className="flex flex-row items-center justify-center">
+              <BsFillSunsetFill className="text-3xl text-slate-100 mr-2"/>
+              <p className="text-slate-300 text-xl">
+                {sunriseTimeHandler(sunset)}
+              </p>
+            </div>
           </div>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center my-2">
           <div className="flex justify-start">
             <h5 className="text-slate-300 text-md">{day}</h5>
           </div>

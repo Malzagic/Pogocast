@@ -108,9 +108,10 @@ const App = () => {
                   feels_like={data.main.feels_like}
                   temp_min={data.main.temp_min}
                   pressure={data.main.pressure}
-                  rain={data.rain ? data.rain["1h"] : data.rain = {"1h": "no rain"}}
+                  rain={data.rain ? data.rain["1h"] : data.rain = {"1h": "0"}}
                   visibility={data.visibility}
                   windDir={data.wind.deg}
+                  day={day}
                 />
               )
             }

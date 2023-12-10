@@ -7,6 +7,7 @@ const SearchBar = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [cityName, setCityName] = useState();
+
   const dataHandler = async () => {
     try {
       const urls = process.env.REACT_APP_WEATHER_URL + `weather?q=${cityName}`;
@@ -22,7 +23,7 @@ const SearchBar = () => {
     }
   };
 
-  const boolen = true;
+  const boolen = false;
   return (
     <main className="container mx-auto my-2 overflow-hidden pb-12">
       <div className="flex justify-center items-center">

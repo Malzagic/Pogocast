@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { WindDirection } from "../hook/windDirections";
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { WiBarometer, WiRaindrops } from "react-icons/wi";
-import { AiOutlinePercentage } from "react-icons/ai";
+import { BsFillCloudFogFill } from "react-icons/bs";
 
 const Details = ({
   icon,
@@ -13,7 +13,8 @@ const Details = ({
   pressure,
   rain,
   visibility,
-  windDir
+  windDir,
+  day
 }) => {
   const feelsLike = Math.round(feels_like - 273.15).toFixed(0);
   const tempMin = Math.round(temp_min - 273.15).toFixed(0);
@@ -58,10 +59,10 @@ const Details = ({
           </div>
         </div>
         <div className="flex flex-col justify-center items-center mx-auto">
-          <p className="text-slate-500">Visibility</p>
+          <p className="text-slate-500">Visibility in meters</p>
           <div className="flex flex-row justify-center items-center">
             <p className="text-slate-100">{visibility}</p>
-            <AiOutlinePercentage className="text-md text-slate-100 ml-1" />
+            <BsFillCloudFogFill className="text-md text-slate-100 ml-1" />
           </div>
         </div>
         <div className="flex flex-col justify-center items-center mx-auto">
@@ -69,9 +70,9 @@ const Details = ({
           <p className="text-slate-100">{windDirection}</p>
         </div>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center my-5">
         <div className="flex mx-auto">
-          <h5 className="text-slate-300 text-md">Monday</h5>
+          <h5 className="text-slate-300 text-md">{day}</h5>
         </div>
         <div className="flex mx-auto">
           <Link
