@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { WindDirection } from "../hook/windDirections.js"
 import { GiMultiDirections } from "react-icons/gi";
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { RiWaterPercentLine } from "react-icons/ri";
@@ -16,23 +17,9 @@ const Home = ({
   day,
 }) => {
   const temperature = Math.round(temp - 273.15).toFixed(0);
-
-  const windDirection = (wind) => {
-    const direction = ["N", "E", "S", "W"];
-    let currDirection;
-
-    if (wind === 0 || (wind >= 0 && wind < 90)) {
-      currDirection = direction[0];
-    } else if (wind === 90 || (wind >= 90 && wind < 180)) {
-      currDirection = direction[1];
-    } else if (wind === 180 || (wind >= 180 && wind < 270)) {
-      currDirection = direction[2];
-    } else if (wind === 270 || (wind >= 270 && wind < 339)) {
-      currDirection = direction[3];
-    }
-
-    return currDirection;
-  };
+  const windHandler = new WindDirection(windDir);
+  const windDirection = windHandler.currDir();
+  
 
   const sunriseTimeHandler = (sunrise) => {
     const date = new Date(sunrise * 1000);
@@ -73,9 +60,7 @@ const Home = ({
         <div className="flex flex-col justify-center items-center mx-auto">
           <p className="text-slate-500">Wind</p>
           <div className="flex flex-row items-center">
-            <p className="text-slate-100">{`${windSpeed} m/s ${windDirection(
-              windDir
-            )}`}</p>
+            <p className="text-slate-100">{`${windSpeed} m/s ${windDirection}`}</p>
             <GiMultiDirections className="text-md text-slate-100 ml-1" />
           </div>
         </div>

@@ -37,6 +37,7 @@ const App = () => {
         const fetchingData = new FetchingData(urls);
         const res = await fetchingData.get();
 
+        console.log(res)
         setData(res);
       }
     } catch (err) {
@@ -97,7 +98,22 @@ const App = () => {
             }
           />
           <Route path="/forecast" element={<ForecastReport />} />
-          <Route path="/details" element={<Details />} />
+          <Route
+            path="/details"
+            element={
+              data && (
+                <Details
+                  icon={data.weather[0].icon}
+                  icon_description={data.weather[0].description}
+                  feels_like={data.main.feels_like}
+                  temp_min={data.main.temp_min}
+                  pressure={data.main.pressure}
+                  rain={data.rain["1h"]}
+                  visibility={data.visibility}
+                />
+              )
+            }
+          />
           <Route path="/search" element={<SearchBar />} />
           <Route path="/charts" element={<Charts />} />
           <Route path="/settings" element={<Settings />} />

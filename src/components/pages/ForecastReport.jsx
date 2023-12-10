@@ -8,9 +8,8 @@ import CircleLoader from "react-spinners/ClipLoader";
 const ForecastReport = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
-  const src = "#";
-  const hour = "14:00";
-  const temp = "32 C";
+  // const [timer, setTimer] = useState("");
+
 
   const dataHandler = async () => {
     try {
@@ -31,6 +30,13 @@ const ForecastReport = () => {
       setLoading(false);
     }
   };
+
+  // const timeHandler = () => {
+  //   const currentTime = new Date().toLocaleTimeString();
+
+  //   setTimer(currentTime);
+  //   console.log(currentTime)
+  // }
 
   useEffect(() => {
     dataHandler();
