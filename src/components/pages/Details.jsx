@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { WindDirection } from "../hook/windDirections";
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { WiBarometer, WiRaindrops } from "react-icons/wi";
 import { AiOutlinePercentage } from "react-icons/ai";
@@ -12,9 +13,13 @@ const Details = ({
   pressure,
   rain,
   visibility,
+  windDir
 }) => {
   const feelsLike = Math.round(feels_like - 273.15).toFixed(0);
   const tempMin = Math.round(temp_min - 273.15).toFixed(0);
+  const windHandler = new WindDirection(windDir);
+  const windDirection = windHandler.currDir();
+
   return (
     <main className="container mx-auto my-2">
       <div className="flex justify-center items-center">
@@ -46,7 +51,7 @@ const Details = ({
           </div>
         </div>
         <div className="flex flex-col justify-center items-center mx-auto">
-          <p className="text-slate-500">Rain (mm)</p>
+          <p className="text-slate-500">Rain within 1h (mm)</p>
           <div className="flex flex-row justify-center items-center">
             <p className="text-slate-100">{rain}</p>
             <WiRaindrops className="text-2xl text-slate-100 ml-1" />
@@ -61,7 +66,7 @@ const Details = ({
         </div>
         <div className="flex flex-col justify-center items-center mx-auto">
           <p className="text-slate-500">Wind Direction</p>
-          <p className="text-slate-100">West</p>
+          <p className="text-slate-100">{windDirection}</p>
         </div>
       </div>
       <div className="flex justify-between items-center">

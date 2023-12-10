@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { FetchingData } from "../hook/fetchData";
 import { FaSearch } from "react-icons/fa";
 import ForecastReport from "./ForecastReport";
 
 const SearchBar = () => {
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+  const [cityName, setCityName] = useState();
+  const dataHandler = async () => {
+    try {
+      const urls = process.env.REACT_APP_WEATHER_URL + `weather?q=${cityName}`;
+      const fetchingData = new FetchingData(urls);
+      const res = await fetchingData.get();
+
+      console.log(res);
+      setData(res);
+    } catch (err) {
+      console.error("Error getting coordinates:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const boolen = true;
   return (
     <main className="container mx-auto my-2 overflow-hidden pb-12">

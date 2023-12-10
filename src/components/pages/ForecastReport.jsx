@@ -72,7 +72,7 @@ const ForecastReport = () => {
           <h5 className="text-slate-300">Next forecast</h5>
         </div>
         <div className="flex mx-auto">
-          <h5 className="text-slate-300">5-days/6:00-00:00</h5>
+          <h5 className="text-slate-300">5-days/time stamps</h5>
         </div>
       </div>
       <div className="flex flex-col justify-center">
